@@ -1,0 +1,13 @@
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin').toString().trim().split('');
+
+const arr =[];
+let output =[];
+for(let i = 97; i <= 122; i++){
+    arr.push(String.fromCharCode(i));
+}
+
+for(let i =0 ; i<arr.length; i++){
+    output.push(input.indexOf(arr[i]));
+}
+console.log(output.join(" "));
