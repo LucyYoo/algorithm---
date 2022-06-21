@@ -1,0 +1,18 @@
+function solution(brown, yellow) {
+    let answer = [];
+    let sum = brown + yellow;
+    
+    
+    for(let height = 3; height<=brown; height++){
+        if(sum % height === 0){
+            let width = sum / height;
+        
+        if((width-2) * (height-2) === yellow && width >=height){
+            answer.push(width);
+            answer.push(height);
+        }    
+        }
+    }
+    
+    return answer;
+}
