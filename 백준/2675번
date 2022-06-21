@@ -1,0 +1,16 @@
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin).toString().trim().split('\n');
+
+const testCase = +input[0];
+
+for(let i=1; i<=testCase; i++){
+    let test = input[i].split(" ");
+    let testR = test[0];
+    let testString = test[1].split("");
+    let answer = '';
+
+    for(let j=0; j<testString.length; j++){
+        answer += testString[j].repeat(testR);
+    }
+
+    
