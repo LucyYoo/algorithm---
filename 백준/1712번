@@ -1,0 +1,8 @@
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin').toString().trim().split(" ").map(Number);
+const [A, B, C] = input;
+
+const margin = C - B;
+const result = Math.floor(A / margin) + 1
+
+console.log(margin <= 0 ? -1 : result);
