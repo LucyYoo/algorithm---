@@ -1,0 +1,26 @@
+const fs = require('fs');
+const input = fs.readFileSync('1193번').toString().trim();
+let groupcounter = 0;
+let N = Number(input);
+let up = [];
+let down = [];
+
+while(N > 0){
+    groupcounter ++;
+    N -= groupcounter;
+}
+
+for(let i=0; i<groupcounter; i++){
+    up.push(i+1);
+    down.push(groupcounter-i);
+}
+
+if(groupcounter % 2 ===0){
+    console.log(
+        `${up[groupcounter+N-1]}/${down[groupcounter+N-1]}`
+    );
+} else{
+    console.log(
+        `${down[groupcounter+N-1]}/${up[groupcounter+N-1]}`
+    );
+}
