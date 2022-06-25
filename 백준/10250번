@@ -1,0 +1,18 @@
+const fs = require('fs');
+let input = fs.readFileSync('/dev/stdin').toString().trim().split("\n");
+
+const testcase = +input[0];
+
+for(let i=1; i<=testcase; i++){
+    let [H, W, N] = input[i].split(" ");
+        let ho = Math.ceil(N / H);
+        let floor = N % H; 
+        if(floor === 0) {
+            floor = H;
+        }
+        let stringHo = ho.toString();
+        let stringFloor = floor.toString();
+
+        console.log(stringFloor + stringHo.padStart(2, "0"));
+
+        }
