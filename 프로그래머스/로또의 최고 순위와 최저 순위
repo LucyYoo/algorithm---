@@ -1,0 +1,15 @@
+function solution(lottos, win_nums) {
+    
+    const win = lottos.filter((v) => win_nums.includes(v)).length;
+    const zero = lottos.filter((v) => v === 0).length;
+
+    const max = win + zero;
+    const min = win;
+    
+    const result = [];
+    result.push(max > 0 ? 7-max : 6);
+    result.push(min > 0 ? 7-min : 6);
+    
+    return result;
+    
+}
