@@ -1,0 +1,28 @@
+function solution(bridge_length, weight, truck_weights) {
+    let bridge = new Array(bridge_length).fill(0);
+    let bridge_weights = 0;
+    let count = 0;
+
+    const truck = truck_weights.shift();
+    
+    bridge.push(truck);
+    bridge.shift();
+    bridge_weights += truck;
+    count++;
+    
+    while(bridge_weights !== 0 ){
+        let next_truck = truck_weights.shift();
+        bridge_weights-=bridge.shift();
+        
+        if(bridge_weights + next_truck <= weight){
+            bridge.push(next_truck);
+            bridge_weights += next_truck;
+        } else {                  
+            bridge.push(0);
+            truck_weights.unshift(next_truck);
+        }
+        count++;
+    }
+    
+    return count;
+}
