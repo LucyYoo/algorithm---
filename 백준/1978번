@@ -1,0 +1,21 @@
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+
+const arr = input[1].split(' ').map(Number);
+
+let arr1 = [];
+
+
+function prime(num){
+    if( num <= 1) return;
+
+    for(let i=2; i*i<=num; i++){
+        if(num % i === 0) return;
+    }
+
+    arr1.push(num);
+}
+
+arr.map((e) => {prime(e)});
+
+console.log(arr1.length);
