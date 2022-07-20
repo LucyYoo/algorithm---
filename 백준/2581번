@@ -1,0 +1,30 @@
+const fs = require('fs');
+const [M, N]= fs.readFileSync('/dev/stdin').toString().split('\n').map(Number);
+
+const arr = [];
+
+
+//소수찾기
+function prime(n){
+    if( n <= 1 ) return;
+
+    for(let j=2; j*j<=n; j++){
+        if(n % j === 0) return;
+    }
+
+    arr.push(n);
+}
+        
+
+//범위 값 적용하기
+    for(let i=M; i<=N; i++){
+        prime(i);
+    }
+
+
+//합산 구하기
+    const sum = arr.reduce((e,v) => e + v, 0);
+    
+//최솟값 구하기
+    const min = Math.min(...arr);
+    console.log(arr.length === 0 ? -1 : `${sum}\n${min}`);
