@@ -1,0 +1,12 @@
+const fs = require('fs');
+let input = fs.readFileSync("/dev/stdin").toString().trim().split(" ");
+
+let newArr = [];
+for(let i=0; i<=input.length; ++i){
+    newArr.push(+input[i]);
+}
+
+const A = newArr[0];
+const B = newArr[1];
+
+console.log(A+B);
