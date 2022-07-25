@@ -1,0 +1,50 @@
+//첫 번째 풀이
+const fs = require('fs');
+let [M, N]= fs.readFileSync('/dev/stdin').toString().trim().split(' ').map(Number);
+
+const arr = []; //소수가 들어갈 빈 배열 생성
+
+function prime(n){
+    if(n<=1) return;  //값이 1보다 작은 경우 소수가 아니므로 리턴
+    for(let i=2; i*i<=n; i++){ //제곱근을 사용해도 되지만 코드의 간결함을 위해 제곱값을 사용
+        if(n % i === 0) return; //만약 나눈 값의 나머지가 0이라면 소수가 아니므로 리턴
+    }
+
+    arr.push(n); //리턴되지 않은 소수값들을 빈 배열에 넣어준다.
+}
+
+for(let i=M; i<=N; i++){ //범위 값을 for문으로 지정
+    prime(i); //범위 값의 수마다 정의함 prime 함수 호출
+}
+
+console.log(arr.join('\n')); //결과 값이 담긴 배열을 줄바꿈 포함하여 문자열로 합친다.
+
+
+
+
+//에라토스테네스의 체를 이용한 방법
+const fs = require('fs');
+let [M, N]= fs.readFileSync('/dev/stdin').toString().trim().split(' ').map(Number);
+
+let primeNumber = Array(N + 1).fill(true); //범위 값만큼 ture로 채운다. (true === 소수)
+primeNumber[0] = primeNumber[1] = false; //0과 1은 소수가 아니므로 false로 설정
+
+
+    for(let i=2; i*i<=N; i++){  //제곱근 또는 제곱 값으로 범위 설정
+        if(primeNumber[i]){  //만약 true 라면
+            let n = 2;  //곱해주는 값 지정(i는 소수이므로 2부터 시작)
+            while(i * n <=N){  //i 곱하기 n이 범위 값을 넘지 않을 때까지 반복
+                primeNumber[i * n] = false;  // 곱한 값(=소수의 배수)를 false로 지정
+                n++; //n 에 1을 더한다. (i가 2라면 2x2, 2x3, 2x4 ...이렇게 배수가 false로 지정되는 것)
+            }
+        }
+    }
+
+    const arr = []; //결과 값이 들어갈 빈 배열 설정
+    for(let i=M; i<=N; i++){ //for문으로 범위 값 지정
+        if(primeNumber[i]){ //값이 true라면
+            arr.push(i); //배열에 넣어준다.
+        }
+    }
+
+    console.log(arr.join('\n')); //결과 값들을 줄바꿈을 포함하여 문자열로 함친다.
