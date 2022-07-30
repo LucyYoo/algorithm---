@@ -1,0 +1,14 @@
+const fs = require('fs');
+let input = fs.readFileSync("/dev/stdin").toString().trim().split(" ").map(Number);
+
+const a = input[0];
+const b = input[1];
+
+const output = 
+`${a + b}
+${a - b}
+${a * b}
+${Math.floor(a / b)}
+${a % b}`;
+
+console.log(output);
