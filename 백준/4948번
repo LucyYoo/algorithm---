@@ -1,0 +1,25 @@
+const fs = require('fs');
+let input= fs.readFileSync('/dev/stdin').toString().trim().split('\n').map(Number);
+
+let answer = [];
+let result = [];
+
+function prime(n){
+    if(n <= 1) return;
+    for(let i=2; i*i<=n; i++){
+        if(n % i === 0) return;
+    }
+
+    answer.push(n);
+}
+
+input.forEach((e) => {
+    const double = 2 * e;
+    for(let i=(e+1); i<=double; i++){
+        prime(i);
+    }
+    if(answer.length !== 0) result.push(answer.length);
+    answer = [];
+})
+
+console.log(result.join('\n'));
