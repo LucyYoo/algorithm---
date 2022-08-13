@@ -1,0 +1,34 @@
+const fs = require('fs');
+const input= fs.readFileSync('/dev/stdin').toString().trim().split('\n').map(Number);
+
+
+const testCase = input[0];
+
+let primeNumber = Array(10001).fill(true);
+
+primeNumber[0] = primeNumber[1] = false;
+
+for(let i=2; i*i<=10000; i++){
+    if(primeNumber[i]){
+        let n = 2;
+        while(i * n <= 10000){
+            primeNumber[i*n] = false;
+            n++;
+        }
+    }
+}
+
+const result = [];
+for(let i=1; i<=testCase; i++){
+    const n = input[i];
+    let left = right = n / 2;
+    while(!primeNumber[left] || !primeNumber[right]){
+        left -= 1;
+        right += 1;
+    }
+
+    result.push(`${left} ${right}`);
+
+}
+
+console.log(result.join('\n'));
