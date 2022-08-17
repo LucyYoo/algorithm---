@@ -1,0 +1,10 @@
+function solution(arr){
+    let result = [];
+    arr.forEach(e => {
+        if(result[result.length - 1] !== e){
+            result.push(e);
+        }
+    })
+
+    return result;
+}
