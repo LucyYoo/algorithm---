@@ -1,0 +1,21 @@
+function solution(sizes) {
+    let width = [];
+    let height = [];
+    
+    sizes.forEach((item) => {
+        if(item[0] >= item[1]){
+            width.push(item[0]);
+            height.push(item[1]);
+        } else {
+            width.push(item[1]);
+            height.push(item[0]);
+        }
+    })
+    
+    const maxW = Math.max(...width);
+    const maxH = Math.max(...height);
+    
+    const size = maxW * maxH;
+    
+    return size;
+}
