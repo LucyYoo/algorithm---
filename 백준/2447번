@@ -1,0 +1,29 @@
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin').toString().trim();
+
+let star = '';
+
+function printStar(i, j, num){
+    if(i%3 === 1 && j%3 ===1){
+        star+=' ';
+    } else{
+        if(num == 1){
+            star += '*'
+        } else {
+            printStar(parseInt(i/3), parseInt(j/3), parseInt(num/3));
+        }
+    }
+
+}
+
+function onStar(n){
+    for(let i=0; i<input; i++){
+        for(let j=0; j<input; j++){
+            printStar(i, j, n);
+        }
+        star += '\n';
+    }
+}
+
+onStar(input);
+console.log(star);
