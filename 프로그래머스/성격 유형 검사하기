@@ -1,0 +1,16 @@
+function solution(survey, choices) {
+    const person = {R:0, T:0, C:0, F:0, J:0, M:0, A:0, N:0};
+    
+    survey.forEach((item, i) => {
+        choices[i] < 4 ? person[item[0]] += 4 - choices[i] : person[item[1]] += choices[i] - 4;
+    })
+    
+    const result = [];
+    person.R >= person.T ? result.push('R') : result.push('T');
+    person.C >= person.F ? result.push('C') : result.push('F');
+    person.J >= person.M ? result.push('J') : result.push('M');
+    person.A >= person.N ? result.push('A') : result.push('N');
+    
+    return result.join("");
+    
+}
