@@ -1,0 +1,21 @@
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+const testCase = input[0].split(' ');
+const N = +testCase[0];
+const M = +testCase[1];
+
+const arr = input[1].split(' ').map(Number);
+let answer = 0;
+arr.forEach((e, index) => {
+    for(let i = index+1; i<arr.length; i++){
+        for(let j = i+1; j<arr.length; j++){
+            let sum = e + arr[i] + arr[j];
+            let gap = M - sum;
+            if(gap >=0 && answer <= sum){
+                answer = sum;
+            }
+        }
+    }
+});
+
+console.log(answer);
