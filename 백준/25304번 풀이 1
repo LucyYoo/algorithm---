@@ -1,0 +1,14 @@
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin').toString().trim().split("\n");
+
+const sum = +input[0];
+const N = +input[1];
+let answer = 0;
+
+for(let i=2; i<input.length; i++){
+    const [prime, num] = input[i].split(" ").map(Number);
+    let plus = prime * num;
+    answer += plus;
+}
+
+answer === sum ? console.log("Yes") : console.log("No");
