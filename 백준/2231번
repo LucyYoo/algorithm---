@@ -1,0 +1,22 @@
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin').toString();
+
+const result = [];
+
+for(let i = 0; i<=input; i++){
+    let n = 0;
+    const stringNumber = String(i);
+    for(let j = 0; j<stringNumber.length; j++){
+        n += Number(stringNumber[j]);
+    }
+    
+    let sum = i + n;
+    
+    if(Number(sum) === Number(input)) {
+        result.push(i);
+    }
+}
+
+const min = Math.min(...result);
+
+result.length !== 0 ? console.log(min) : console.log(0);
