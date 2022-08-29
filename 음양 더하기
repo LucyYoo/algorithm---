@@ -1,0 +1,9 @@
+function solution(absolutes, signs) {
+    let n = 0;
+    absolutes.forEach((e, i) => {
+        n += e * (signs[i] ? +1 : -1);
+        
+    })
+    
+    return n;
+}
