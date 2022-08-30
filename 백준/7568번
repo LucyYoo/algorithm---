@@ -1,0 +1,22 @@
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin').toString().trim().split("\n");
+
+const testCase = input[0];
+
+const rank = [];
+
+for(let i=1; i<input.length; i++){
+    const top = [];
+    const [weight, hight] = input[i].split(" ").map(Number);
+
+    for(let j=1; j<input.length; j++){
+        const [otherwei, otherhi] = input[j].split(" ").map(Number);
+        if(weight < otherwei && hight < otherhi){
+            top.push(otherwei);
+        }
+    }
+    const k = top.length;
+    k !== 0 ? rank.push(k+1) : rank.push(1);
+}
+
+console.log(rank.join(" "));
