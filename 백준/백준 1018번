@@ -1,0 +1,42 @@
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin').toString().trim().split("\n");
+
+const [N, M] = input[0].split(" ").map(Number);
+
+let answer = 100;
+let board = [];
+
+for(let i=1; i<input.length; i++){
+    board.push(input[i].trim().split(''));
+}
+
+const white = ['WBWBWBWB', 'BWBWBWBW', 'WBWBWBWB', 'BWBWBWBW', 'WBWBWBWB', 'BWBWBWBW', 'WBWBWBWB', 'BWBWBWBW'];
+const black = ['BWBWBWBW', 'WBWBWBWB', 'BWBWBWBW', 'WBWBWBWB', 'BWBWBWBW', 'WBWBWBWB', 'BWBWBWBW', 'WBWBWBWB'];
+
+function checkColor (x, y){   // (문자, 행)
+    let whiteCount = 0;
+    let blackCount = 0;
+
+    for(let i=y; i<y+8; i++){  //행
+        for(let j=x; j<x+8; j++){  //문자
+            if(board[i][j] !== white[i-y][j-x])
+            whiteCount++;
+
+            if(board[i][j] !== black[i-y][j-x])
+            blackCount++;
+        }
+    }
+
+    const min = whiteCount < blackCount ? whiteCount : blackCount;
+
+    if(answer > min) answer = min;
+
+}
+
+for(let i =0; i<= N - 8; i++){ //y축, 줄
+    for(let j=0; j<= M - 8; j++){  //x축, 문자
+        checkColor(j, i);
+    }
+}
+
+console.log(answer);
