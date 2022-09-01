@@ -1,0 +1,19 @@
+function solution(nums) {
+    const pick = nums.length / 2
+    const type = {};
+
+    nums.forEach((e) => {
+        if(!Object.hasOwnProperty(e))
+        type[e] = 0;
+    })
+
+    for(let key of nums){
+        type[key]++;
+    }
+
+    const objLength = Object.keys(type).length;
+
+    if(pick > objLength) return objLength;
+    else return pick;
+
+}
