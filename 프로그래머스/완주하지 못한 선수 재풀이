@@ -1,0 +1,17 @@
+function solution(participant, completion) {
+   const people ={};
+    participant.forEach((e)=>{
+        people[e] ? people[e]++ : people[e] = 1;
+    })
+    
+    completion.forEach((i) => {
+        if( people[i] ) people[i]--; 
+    })
+    
+    for(const key in people){
+        if(people[key] !== 0){
+            return key;
+            break;
+        }         
+    }
+}
