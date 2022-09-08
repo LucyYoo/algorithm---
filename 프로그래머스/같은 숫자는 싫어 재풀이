@@ -1,0 +1,11 @@
+function solution(arr){
+    const result = [];
+    
+    arr.forEach((e, index) => {
+        if(arr[index] !== result[result.length-1]){
+            result.push(arr[index]);
+        }
+    })
+    
+    return result;
+}
