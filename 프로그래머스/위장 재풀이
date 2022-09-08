@@ -1,0 +1,15 @@
+function solution(clothes) {
+    let answer = 1;
+    let obj = {};
+    
+    clothes.forEach((e) => {
+        const item = e;
+        obj[item[1]] ? obj[item[1]]++ : obj[item[1]] = 2;
+    })
+    
+    for(const key in obj){
+        answer *= obj[key];
+    }
+    
+    return answer - 1;
+}
