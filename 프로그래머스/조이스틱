@@ -1,0 +1,20 @@
+function solution(name) {
+    let changeAlphabet = 0;
+    let minMove = name.length - 1;
+    
+    for(let i=0; i<name.length; i++){
+        let alphabetNum = name.charCodeAt(i);
+        if(alphabetNum < 78) changeAlphabet += alphabetNum - 65;
+        else{
+            changeAlphabet += 91 - alphabetNum;
+        }
+    
+    let nextIndex = i + 1;
+    while(nextIndex < name.length && name[nextIndex] === 'A') nextIndex++;
+    
+    minMove = Math.min(minMove, i*2 + name.length - nextIndex);
+    minMove = Math.min(minMove, (name.length - nextIndex) * 2 + i);
+    }
+    
+    return changeAlphabet + minMove;
+}
