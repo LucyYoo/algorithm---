@@ -1,0 +1,9 @@
+function solution(x) {
+    let stringSum = 0;
+    const stringN = x+''.split("");
+    for(let i = 0; i<stringN.length; i++){
+        stringSum += +stringN[i];
+    }
+    
+    return x%stringSum === 0 ? true : false; 
+}
