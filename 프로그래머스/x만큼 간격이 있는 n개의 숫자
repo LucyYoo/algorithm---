@@ -1,0 +1,11 @@
+function solution(x, n) {
+    const answer = [];
+    let count = 0;
+    while(answer.length < n){
+        count += x;
+        
+        answer.push(count);
+    }
+    
+    return answer;
+}
