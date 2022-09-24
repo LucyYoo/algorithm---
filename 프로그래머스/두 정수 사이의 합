@@ -1,0 +1,10 @@
+function solution(a, b) {
+    let A = (a < b) ? a : b;
+    let B = (a < b) ? b : a;
+    let sum = 0;
+    for(let i = A; i<=B; i++){
+        sum += i;
+    }
+    
+    return sum;
+}
