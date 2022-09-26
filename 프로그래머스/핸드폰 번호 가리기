@@ -1,0 +1,12 @@
+function solution(phone_number) {
+    let star = '';
+    for(let i = 0; i<phone_number.length; i++){
+        if(i < phone_number.length - 4){
+            star += '*';
+        } else{
+            star += phone_number[i];
+        }
+    }
+    
+    return star;
+}
