@@ -1,0 +1,9 @@
+function solution(n) {
+    let string = '';
+    
+    for(let i = 1; i<=n; i++){
+        string += (i%2 !== 0 ? '수' : '박');
+    }
+    
+    return string;
+}
