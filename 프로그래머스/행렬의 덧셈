@@ -1,0 +1,14 @@
+function solution(arr1, arr2) {
+    let result =[];
+    
+    arr1.map((e, index) => {
+        let sum = [];
+        let array2 = arr2[index];
+        for(let i = 0; i<e.length; i++){
+            sum.push(Number(e[i]) + Number(array2[i]));
+        }        
+        result.push(sum);
+    })
+    
+    return result;
+}
