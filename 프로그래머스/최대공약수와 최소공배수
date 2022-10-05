@@ -1,0 +1,13 @@
+function solution(n, m) {
+    let answer = [];
+    
+    function eucli (a, b){
+        if(b === 0) return a;
+        return eucli(b, a % b);
+    }
+    const greatest = eucli(n,m);
+    
+    const Least = (n * m) / greatest;
+    
+    return [greatest, Least];
+}
