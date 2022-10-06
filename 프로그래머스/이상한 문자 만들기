@@ -1,0 +1,22 @@
+function solution(s) {
+    const result = [];
+    const splitSpring = s.split(" ");
+    
+    splitSpring.forEach((e) => {
+        const word = [];
+        
+        for(let i = 0; i<e.length; i++){
+            if(i % 2 === 0){
+                const largeAlphabet = e[i].toUpperCase();
+                word.push(largeAlphabet);
+            } else{
+                const smallAlphabet = e[i].toLowerCase();
+                word.push(smallAlphabet);
+            }
+        }
+        
+        result.push(word.join(""))
+    })
+    
+    return result.join(" ")
+}
