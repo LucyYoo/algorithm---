@@ -1,20 +1,19 @@
 function solution(s, n) {
     const ascii = [];
     const result = [];
-
+    
     for(let i = 0; i<s.length; i++){
         let asciitrans = s.charCodeAt(i)
-        if(asciitrans === 90 || asciitrans === 122 || 
-           asciitrans < 90 && asciitrans + n > 90 || asciitrans < 122 && asciitrans + n > 122){
+        if(asciitrans <= 90 && asciitrans + n > 90 || asciitrans <= 122 && asciitrans + n > 122){
             ascii.push(asciitrans - 26 + n)
-
+            
         } else if(s[i] === ' '){
             ascii.push(' ');
         } else{
            ascii.push(asciitrans + n); 
         }
     }
-
+    
     for(let i = 0; i<ascii.length; i++){
         if(ascii[i] === ' '){
             result.push(' ');
@@ -22,6 +21,6 @@ function solution(s, n) {
             result.push(String.fromCharCode(ascii[i]));
         }       
     }
-
+    
     return result.join("");
 }
