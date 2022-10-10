@@ -1,0 +1,27 @@
+function solution(n, arr1, arr2) {
+    const arr1Binary = [];
+    const arr2Binary = [];
+    const result = [];
+    
+    for(let i = 0; i < n; i++){
+        arr1Binary.push(arr1[i].toString(2).padStart(n, 0));
+        arr2Binary.push(arr2[i].toString(2).padStart(n, 0));
+    }
+    
+    for(let i = 0; i < n; i++){
+        let sumBinary = '';
+        let arr1Check = arr1Binary[i];
+        let arr2Check = arr2Binary[i];
+        
+        for(let j = 0; j < n; j++){
+            if(arr1Check[j] === '1' || arr2Check[j] === '1'){
+                sumBinary += '#';
+            } else{
+                sumBinary += ' ';
+            }            
+        }
+        
+        result.push(sumBinary);
+    }
+    return result;
+}
