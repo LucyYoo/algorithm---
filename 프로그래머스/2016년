@@ -1,0 +1,17 @@
+function solution(a, b) {
+    const weekends = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+    let days = 0;
+    for(let i = 1; i < a; i++){
+        if(i === 2){
+            days += 29;
+        } else if(i < 8 && i % 2 !== 0 || i >= 8 && i % 2 === 0){
+            days += 31;
+        } else {
+            days += 30;
+        }
+    }
+
+    days += b;
+    return weekends[(days+4) % 7];
+
+}
