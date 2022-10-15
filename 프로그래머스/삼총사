@@ -1,0 +1,19 @@
+function solution(number) {
+    let count = 0;
+
+    function sumNum (currentArr, startI){
+        if(currentArr.length === 3){
+            const sum = currentArr.reduce((prev, curr) => prev + curr, 0)
+            count += sum === 0 ? 1: 0;
+            return;
+        }
+
+        for(let i = startI; i<number.length; i++){
+            sumNum([...currentArr, number[i]], i+1);
+        }
+    }
+
+    sumNum([], 0);
+
+    return count;
+}
