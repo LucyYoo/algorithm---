@@ -1,0 +1,29 @@
+function solution(nums) {
+    let count = 0;
+    
+    function prime(sum){
+        if(sum <= 1) return; 
+        
+        for(let i = 2; i*i<=sum; i++){
+            if(sum % i === 0) return;
+        }
+        
+        return count++;
+    }
+    
+    function sum(currentArr, start){
+        if(currentArr.length === 3){
+            let sum = currentArr.reduce((prev, curr) => prev+curr, 0);
+            prime(sum);
+            return;
+        }
+        
+        for(let i = start; i<nums.length; i++){
+            sum([...currentArr, nums[i]], i+1)
+        }
+    }
+    
+    sum([], 0)
+    
+    return count;
+}
