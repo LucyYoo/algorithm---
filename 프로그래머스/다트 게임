@@ -1,0 +1,29 @@
+function solution(dartResult) {
+    let scoreArr =dartResult.match(/(\d+)[SDT]{1}[*|#]?/g);
+    let result =[];
+
+    for(let i = 0; i<scoreArr.length; i++){
+        let score = scoreArr[i].match(/(\d+)/g)
+
+        for(let j = 0; j<scoreArr[i].length; j++){
+            if(scoreArr[i][j] === 'S'){
+                result.push(Math.pow(score[0], 1));
+            } else if (scoreArr[i][j] === 'D'){
+                result.push(Math.pow(score[0], 2));
+            } else if (scoreArr[i][j] === 'T'){
+                result.push(Math.pow(score[0], 3));
+            }
+
+
+            if(scoreArr[i][j] === '*' && result.length > 1){
+                result[result.length-2] = result[result.length-2] * 2;
+                result[result.length-1] = result[result.length-1] * 2;
+            } else if(scoreArr[i][j] === '*' && result.length === 1){
+                result[result.length-1] = result[result.length-1] * 2;
+            } else if(scoreArr[i][j] === '#'){
+                result[result.length-1] = result[result.length-1] * -1;
+            }
+        }
+    }
+    return result.reduce((prev, curr) => prev + curr, 0);
+}
