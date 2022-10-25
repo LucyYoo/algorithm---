@@ -1,0 +1,12 @@
+function solution(a, b, n) {
+    let count = 0;
+    
+    while (n >= a){
+        const bottle = Math.floor(n / a);
+        const emtpy = bottle * b;
+        count += emtpy;
+        n = n - (bottle * a) + emtpy;
+    }
+    
+    return count;
+}
