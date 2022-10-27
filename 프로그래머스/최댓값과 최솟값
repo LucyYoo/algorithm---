@@ -1,0 +1,7 @@
+function solution(s) {
+    const sArr = s.split(" ");
+    const max = Math.max(...sArr);
+    const min = Math.min(...sArr);
+
+    return `${min} ${max}`
+}
