@@ -1,0 +1,22 @@
+function solution(X, Y) {
+    const result = [];
+    const string = {};
+    
+    for(const num of X){
+        string[num] = (string[num] || 0 ) + 1
+    }
+    
+    for(let i= 0; i<Y.length; i++){
+        if(string.hasOwnProperty(Y[i]) && string[Y[i]] !== 0){
+            result.push(Y[i])
+            string[Y[i]]--;
+        }
+    }
+    
+    result.sort((a, b) => b - a);
+    
+    if(result.length === 0) return "-1";
+    return result[0] === "0" ? '0' : result.join(""); 
+    
+
+}
