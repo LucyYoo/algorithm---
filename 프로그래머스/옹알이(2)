@@ -1,0 +1,27 @@
+
+
+function solution(babbling) {
+    const doIt = ['aya', 'ye', 'woo', 'ma'];
+    let count = 0;
+    
+    for(let i=0; i<babbling.length; i++){
+        let word = babbling[i];
+        let string = '';
+        let prevstring = '';
+        for(let k = 0; k<word.length; k++){
+            string += word[k];
+            for(let j=0; j<doIt.length; j++){
+                if(string === doIt[j] && prevstring !== string){
+                    prevstring = string;
+                    string='';
+                }
+            }
+        }
+        if(string.length === 0){
+                count++;
+            }
+        
+    }
+
+    return count;
+}
