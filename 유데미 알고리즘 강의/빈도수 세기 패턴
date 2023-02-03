@@ -1,0 +1,15 @@
+function validAnagram(string1, string2){
+  if(string1.length !== string2.length) return false;
+  
+  const stringObj = {};
+  for(let str of string1) {
+    stringObj[str] = (stringObj[str] || 0) + 1;
+  }
+
+  for(let str of string2) {
+    if(!stringObj[str]) return false;
+      --stringObj[str];
+  }
+  
+  return true;
+}
