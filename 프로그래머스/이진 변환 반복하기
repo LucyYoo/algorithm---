@@ -1,0 +1,16 @@
+function solution(s) {
+    function transformBinary(s, countTrans, countZero) {
+        const deleteZero = s.split("").filter(e => e === '1');
+        
+        const transitionBinary = deleteZero.length.toString(2);
+        
+        countZero += s.length - deleteZero.length;
+        countTrans ++;
+        
+        if(transitionBinary === '1') return [countTrans, countZero];
+        
+        return transformBinary(transitionBinary, countTrans, countZero)
+    }
+    
+    return transformBinary(s, 0, 0);
+}
