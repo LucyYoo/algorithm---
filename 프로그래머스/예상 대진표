@@ -1,0 +1,34 @@
+/* 라운드를 진행할 때 변화하는 숫자
+4 -> 2 -> 1
+7-> 4 -> 2
+
+이전 수를 2로 나눈 후 반올림 한 수
+
+A와 B의 차가 1이면서 둘 중에 큰 수가 짝수일 때 만난 것이므로 횟수를 리턴한다. (count = 1 시작)
+혹은 A와 B가 같으면 이미 라운드가 진행된 것이므로 리턴한다. (count = 0 시작)
+*/
+
+//재귀로 푸는 방법
+function solution(n,a,b) {
+    let count = 0;
+    function tournament (a, b) {
+        console.log(a, b)
+        if(a === b) return count;
+        count++;
+        return tournament(Math.ceil(a / 2),Math.ceil(b / 2));
+    }
+    
+    return tournament(a, b);
+}
+
+//반복문으로 푸는 방법
+function solution(n,a,b) {
+    let count = 0;
+    while(a !== b) {
+        count++;
+        a = Math.ceil(a/2);
+        b = Math.ceil(b/2);
+    }
+    
+    return count;
+}
