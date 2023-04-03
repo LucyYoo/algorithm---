@@ -1,0 +1,12 @@
+//단순 반복문으로 풀려면 O(n^2)의 시간이 걸릴 것 같음.
+//유클리드 호제법을 사용하면 간단
+//reduce를 이용해서 첫 번째 수와 두 번째 수의 최소 공배수를 구해주고 그 최소공배수와 다음 수의 최소공배수를 계산한다.
+function gcd(a, b) {
+    const rest = a % b;
+    if(rest == 0) return b;
+    return gcd(b, rest);
+}
+
+function solution(arr) {
+    return arr.reduce((a, b) => (a * b) / gcd(a, b))
+}
