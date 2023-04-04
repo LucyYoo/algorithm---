@@ -1,0 +1,11 @@
+function solution(k, tangerine) {
+    let result = 0;
+    const sizeCount = {};
+    tangerine.forEach((e) => sizeCount[e] = (sizeCount[e] || 0) + 1)
+    const countArr = Object.values(sizeCount).sort((a, b) => b - a);
+
+    for(let i = 0; i<countArr.length; i++) {
+        k -= countArr[i];
+        if(k <= 0) return i + 1;
+    }
+}
