@@ -1,0 +1,12 @@
+function solution(s) {
+    const obj = {};
+    const answer = [];
+    const arrS = JSON.parse(s.replace(/{/g, "[").replace(/}/g, "]"));
+    arrS.flat().forEach(e => obj[e] = (obj[e] || 0) + 1);
+    const sortObj = Object.entries(obj).sort((a, b) => b[1] - a[1])
+    for(let e of sortObj) {
+        answer.push(Number(e[0]));
+    }
+    
+    return answer;
+}
