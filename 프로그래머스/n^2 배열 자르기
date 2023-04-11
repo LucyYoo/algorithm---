@@ -1,0 +1,9 @@
+//x좌표: Math.floor(i/n)
+//y좌표: i % n
+//배열의 값: Math.max(x좌표, y좌표) + 1
+function solution(n, left, right) {
+    return new Array(right - left + 1).fill(0).reduce((acc, cur, i) => {
+        acc.push(Math.max((i + left) % n, Math.floor((i + left) / n)) + 1)
+        return acc;
+    }, [])
+}
