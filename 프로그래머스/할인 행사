@@ -1,0 +1,20 @@
+const matchItem = (sliceDiscount, want, number) => {
+    const discountItem = new Map();
+    sliceDiscount.forEach((e) => discountItem.set(e, (discountItem.get(e) || 0) + 1));
+    for(let i = 0; i<want.length; i++) {
+        if(discountItem.get(want[i]) !== number[i]) return false;
+    }
+    
+    return true;
+}
+    
+function solution(want, number, discount) {
+    let result = 0;
+
+    for(let i = 0; i<= discount.length - 10; i++) {
+        const sliceDiscount = discount.slice(i, i + 10);
+        matchItem(sliceDiscount, want, number) && result++;
+    }
+    
+    return result;
+}
