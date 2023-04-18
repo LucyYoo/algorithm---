@@ -1,0 +1,25 @@
+//장르를 key로 재생된 횟수를 value를 누적해서 저장한다.
+//genres 배열을 돌면서 {genres: value, plays: value, index: i} 형태로 저장한 배열을 만든다.
+//해당 배열을 sort로 정렬하는데
+//만약 genres가 같지않다면 genres 순서로
+//만약 genres는 같은데 plays가 다르다면 plays 순서로
+//둘 다 같다면 고유 번호 순서로 정렬한다.
+//새로운 객체를 만들어 장르별로 재생된 노래의 개수를 저장한다.
+//개수가 2가 넘어가지 않은 장르의 고유번호를 배열로 만든다.
+function solution(genres, plays) {
+    const total = {};
+    const result = {};
+    genres.forEach((e, i) => total[e] = (total[e] || 0 )+ plays[i])
+    return genres.map((e, i) => {return {genres: e, plays: plays[i], index: i}})
+                 .sort((a, b) => {
+                    if(a.genres !== b.genres) return total[b.genres] - total[a.genres]
+                    if(a.plays !== b.plays) return b.plays - a.plays
+                    return a.index - b.index
+                 })
+                 .filter(e => {
+                    if(result[e.genres] >= 2) return false;
+                    result[e.genres] = (result[e.genres] || 0) + 1;
+                    return true;
+                 })
+                 .map(e => e.index);
+}
