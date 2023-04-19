@@ -1,0 +1,12 @@
+function solution(name, yearning, photo) {
+    const scores = {};
+    const result = [];
+    name.forEach((e, i) => scores[e] = yearning[i]);
+    
+    for(let i = 0; i<photo.length; i++) {
+        const score = photo[i].map(e => name.includes(e) && scores[e]).reduce((prev, cur) => prev + cur, 0);
+        result.push(score);
+    }
+    
+    return result;
+}
