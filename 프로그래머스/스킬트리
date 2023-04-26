@@ -1,0 +1,40 @@
+//첫 번째 방버
+function solution(skill, skill_trees) {
+    const order = skill.split("").reverse();
+    let result = 0;
+    for(let i = 0; i<skill_trees.length; i++) {
+        const copyOrder = [...order];
+        let check = true;
+
+        for(let j = 0; j < skill_trees[i].length; j++) {
+            const currentStr = skill_trees[i][j];
+            if(copyOrder.includes(currentStr)) {
+                if(copyOrder[copyOrder.length - 1] === currentStr) copyOrder.pop();
+                else { 
+                    check = false;
+                    break;
+                };
+            }
+        }
+
+        check && result++;
+    }
+
+    return result;
+}
+
+//두 번째 방법
+function solution(skill, skill_trees) {
+    const checkSkillTree = (skillOrder) => {
+        const copyOrder = skill.split("").reverse();
+        
+        for(let i = 0; i < skillOrder.length; i++) {
+            if(!copyOrder.includes(skillOrder[i])) continue;
+            if(copyOrder.pop() === skillOrder[i]) continue;
+            return false;
+        }
+        return true;
+    }
+    
+    return skill_trees.filter(checkSkillTree).length;
+}
