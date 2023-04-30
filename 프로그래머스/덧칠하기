@@ -1,0 +1,13 @@
+function solution(n, m, section) {
+    let answer = 0;
+    let max = 0;
+    section.forEach(e => {
+        if(e > max) {
+            answer++;
+            max = e + m - 1;
+            console.log(max)
+        }
+    })
+    
+    return answer;
+}
