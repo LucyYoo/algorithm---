@@ -1,0 +1,35 @@
+//taget이 words 배열에 없으면 0 return
+//bfs와 큐를 이용해서 풀이
+//[begin, 변경 횟수]를 큐에 넣는다.
+//큐에서 shift를 하면서 shift한 값의 value가 target과 같으면 변경횟수를 리턴한다.
+//아닌 경우 value를 반복문으로 돌면서 변경된 글자가 몇 개인지 확인한다.
+//만약 변경된 글자가 1개라면 다음 노드이므로 큐에 [value, 변경 횟수+1]을 추가한다.
+
+const checkNextNode = (current, word) => {
+    let changeChar = 0;
+    for(let i = 0; i<word.length; i++) {
+        if(word[i] !== current[i]) changeChar++;
+      }
+
+    return changeChar === 1 ? true : false;
+}
+
+function solution(begin, target, words) {
+    if(!words.includes(target)) return 0;
+    const queue = [];
+    const visited = [];
+    
+    queue.push([begin, 0]);
+    while(queue) {
+        let [value, count] = queue.shift();
+        if(value === target) return count;
+        
+       words.forEach(word => {
+            if(visited.includes(word)) return;
+            if(checkNextNode(value, word)) {
+                queue.push([word, ++count]);
+                visited.push(word);
+            }
+        })  
+    }
+}
