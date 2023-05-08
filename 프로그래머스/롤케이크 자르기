@@ -1,0 +1,30 @@
+function solution(topping) {
+    const toppingHash = new Map();
+    topping.forEach((e) => {
+        if(toppingHash.has(e)) {
+            const current = toppingHash.get(e);
+            const plusCount = ++current.count;
+            toppingHash.set(e, {count: plusCount, visited: false})
+        } else toppingHash.set(e, {count: 1, visited: false})
+    })
+    
+    let result = 0;
+    let brother = toppingHash.size;
+    let sister = 0
+    
+    for(let i = 0; i<topping.length; i++) {
+        const current = toppingHash.get(topping[i]);
+        if(current.count > 0) {
+            const val = current.count--;
+            if(current.count === 0) brother--;
+        }
+        if(!current.visited) {
+            current.visited = true;
+            sister++;
+        }
+        toppingHash.set(topping[i], current);
+        if(brother === sister) result++;
+    }
+    
+    return result;
+}
