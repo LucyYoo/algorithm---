@@ -1,0 +1,51 @@
+//우회할 수 있도록 모든 값을 2배로 만든다.
+//이동 경우를 배열로 만든다.
+//시작 위치를 큐에 담는다.
+//rectangle을 반복문을 돌면서 테두리는 1, 내부는 2로 배열로 저장한다.
+//큐에서 빼서 반복문을 돌면서 item에 도착했는지 확인한다.
+//item에 도착하지 않은 경우 해당 위치가 1일 때 큐에 저장한다.
+//방문한 곳은 0으로 바꾸어 방문처리를 한다.
+const moveX = [1, -1, 0, 0];
+const moveY = [0, 0, 1, -1];
+
+function solution(rectangle, characterX, characterY, itemX, itemY) {
+    characterX *= 2;
+    characterY *= 2;
+    itemX *= 2;
+    itemY *= 2;
+    const dobuleRec = rectangle.map(e => e.map(point => point * 2));
+    
+    const start = [characterX, characterY, 0];
+    const queue = [start];
+    
+    const map = Array.from({length: 120}, () => Array(120).fill(0));
+    
+    dobuleRec.forEach(([x1, y1, x2, y2]) => {
+        for(let i = x1; i<=x2; i++) {
+            for(let j = y1; j <= y2; j++) {
+                if( i === x1 || i === x2 || j === y1 || j === y2){
+                    if(map[i][j] === 0) map[i][j] = 1;
+                } else map[i][j] = 2;
+            }
+        }
+    })
+
+    map[characterX][characterY] = 0;
+    
+    while(queue.length > 0) {
+        const [x, y, count] = queue.shift();
+        
+        if(x === itemX && y ===itemY) return count/2;
+        
+        for(let i = 0; i<4; i++) {
+            const changeX = x + moveX[i];
+            const changeY = y + moveY[i];
+            if(map[changeX][changeY] === 1) {
+                queue.push([changeX, changeY, count + 1]);
+                map[changeX][changeY] = 0;
+            }
+        }
+    }
+    
+    return 0;
+}
